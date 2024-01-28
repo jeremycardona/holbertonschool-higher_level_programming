@@ -1,2 +1,2 @@
 # READ ME
-python programming class
+python programming class projects and code files.
