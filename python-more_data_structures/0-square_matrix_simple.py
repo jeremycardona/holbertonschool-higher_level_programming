@@ -2,5 +2,6 @@
 def square_matrix_simply(matrix=[]):
     m = []
     for r in matrix:
-        m[r] = matrix[r] ** 2
+        m.append([x ** 2 for c in r])
     return m
+
