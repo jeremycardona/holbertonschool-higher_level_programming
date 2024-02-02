@@ -5,4 +5,4 @@ def search_place(my_list, search, replace):
         if (elem == search):
             temp = elem
             replace = temp
-
+return replace
