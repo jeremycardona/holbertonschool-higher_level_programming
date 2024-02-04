@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 def uniq_add(my_list=[]):
+    uniq = set()
     result = 0
-    for my_list in set(my_list):
-        result += set(my_list)
-    return result
+    for n in my_list:
+        if (n not in uniq:
+            result += n
+            uniq.add(n)
+    return uniq
