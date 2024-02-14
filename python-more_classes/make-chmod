@@ -6,4 +6,4 @@ else
 	touch $FILE
        	echo "#!/usr/bin/python3" > $FILE
 fi
-chmod 777 $FILE.py
+chmod 777 *.py
