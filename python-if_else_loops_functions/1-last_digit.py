@@ -6,10 +6,10 @@ number = random.randint(-10000, 10000)
 # if the last digit is greater than 5: "and is is greater than 5"
 # if the last digit is 0: the string "and is 0"
 # if the last difit is less than 6 and not 0: the string
-# and is lesss than 6 and not 0
+# "and is lesss than 6 and not 0
 # followed by a newline
-# convert negative randoms here
 
+# convert negative randoms here
 if number < 0:
     number *= 1
 
