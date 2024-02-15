@@ -1,0 +1,8 @@
+[user]
+	email = jeremy.cardona@hotmail.com
+	name = Jeremy Cardona
+[core]
+	editor = vi
+	excludesfile = /home/jeremyc/.gitignore_global
+[commit]
+	template = /home/jeremyc/.gitmessage.txt
