@@ -1,0 +1,9 @@
+#!/bin/bash
+FILE=$1
+if [ -f $FILE ]; then
+	echo "File $FILE exists."
+else
+	touch $FILE
+       	echo "#!/usr/bin/python3" > $FILE
+fi
+chmod 777 $FILE.py
