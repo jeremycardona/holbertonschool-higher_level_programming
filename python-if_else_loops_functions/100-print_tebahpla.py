@@ -8,4 +8,3 @@ for i in range(ord('z'), ord('a') - 1, -1):
         output += chr(i - 32)
 
 print("{}".format(output), end="")
-
