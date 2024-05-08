@@ -7,5 +7,5 @@ for i in range(ord('z'), ord('a') - 1, -1):
     else:
         output += chr(i - 32)
 
-print(f"{output}", end="")
+print("{}".format(output), end="")
 
