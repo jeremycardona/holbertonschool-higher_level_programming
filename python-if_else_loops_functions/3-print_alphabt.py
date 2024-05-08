@@ -1,12 +1,6 @@
 #!/usr/bin/python3
-import str
 
-i = int(0)
-alphabet = "abcdefghijklmnopqrstuvwxyz"
-e = alphabt[5]
-q = alphabt[17]
-print(e)
-# alphabt[i]
-for i in alphabt:
-    if alphabt[int(i)] != e | alphabt[int(i)] != q:
-        print(alphabet)
+for letter in range(97, 123):
+    if chr(letter) == "q" or chr(letter) == "e":
+        continue
+    print("{}".format(chr(letter)), end="")
