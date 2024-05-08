@@ -1,4 +1,4 @@
 #!/usr/bin/python3
 
-alphabet = "abcdefghijklmnopqrstuvwxyz"
-print(alphabet, end="")
+for letter in range(97, 123):
+    print(chr(letter), end="")
