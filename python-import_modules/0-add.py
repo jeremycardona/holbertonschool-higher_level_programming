@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
-import add_0
+from add_0 import add
 
-num1 = 1
-num2 = 2
-res = add_0.add(num1, num2)
+a = 1
+b = 2
+res = add(a, b)
 
-print(f"{num1} + {num2} = {res}")
+print(f"{a} + {b} = {res}")
