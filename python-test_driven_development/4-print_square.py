@@ -3,7 +3,7 @@
 
 
 def print_square(size):
-    """Method for printing a square with # characters."""
+    """Print a square with # characters."""
 
     if not isinstance(size, int):
         raise TypeError("size must be an integer")
