@@ -1,13 +1,9 @@
 #!/usr/bin/python3
-""" a rectangle class """
+"""This creates a class that defines a rectangle"""
 
 
 class Rectangle:
-    """private width, private height, init default, assign default values
-
-    public method area and perimeter
-    """
-
+    """Creates rectangle, calculates the area & perimeter, prints rectangle"""
     def __init__(self, width=0, height=0):
         self.width = width
         self.height = height
@@ -40,7 +36,16 @@ class Rectangle:
         return self.__width * self.__height
 
     def perimeter(self):
-        if self.__width != 0 and self.height != 0:
+        if self.__width != 0 and self.__height != 0:
             return 2 * (self.__width + self.__height)
         else:
             return 0
+
+    def __str__(self):
+        if self.__width == 0 or self.__height == 0:
+            return ""
+        else:
+            rectangle_str = ""
+            for i in range(self.__height):
+                rectangle_str += '#' * self.__width + '\n'
+            return rectangle_str[:-1]
