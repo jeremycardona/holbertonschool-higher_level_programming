@@ -1,3 +1,5 @@
+#!/usr/bin/bash
+"""Module containing inherits_from function"""
 def inherits_from(obj, a_class):
     """
     This function checks if an object is an instance of a class that inherited (directly or indirectly)
