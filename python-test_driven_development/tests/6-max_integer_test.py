@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""Module for unittesting max integer"""
+
+
 import unittest
 from 6-max_integer import max_integer
 
