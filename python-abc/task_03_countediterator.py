@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """Module for CountedIterator class"""
+
+
 class CountedIterator:
     """CountedIterator methods"""
     def __init__(self, iterable):
