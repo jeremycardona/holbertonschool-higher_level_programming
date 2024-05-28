@@ -18,7 +18,7 @@ class Student:
                     data[key] = student_dict[key]
             return data
         return student_dict
-    
+
     def reload_from_json(self, json):
         self.first_name = json.get("first_name", "J")
         self.last_name = json.get("last_name", "S")
