@@ -18,7 +18,7 @@ class CustomObject():
 
     def serialize(self, filename):
         try:
-            with open(filename, "w") as write_file:
+            with open(filename, "wb") as write_file:
                 pickle.dump(self, write_file)
         except Exception:
             print("Error pickling")
@@ -26,7 +26,7 @@ class CustomObject():
     @classmethod
     def deserialize(cls, filename):
         try:
-            with open(filename, "r") as read_file:
+            with open(filename, "rb") as read_file:
                 return pickle.load(read_file)
         except Exception:
             print("Error depickling")
