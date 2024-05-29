@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 """module that pickles and depickles a custom python object"""
-
-
 import pickle
 
 
@@ -27,6 +25,7 @@ class CustomObject():
                 pickle.dump(self, write_file)
         except Exception:
             print("Error pickling")
+
     @classmethod
     def deserialize(cls, filename):
         try:
