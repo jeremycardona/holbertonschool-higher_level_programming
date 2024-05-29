@@ -5,9 +5,6 @@ import pickle
 
 class CustomObject():
     """custom class fields and methods"""
-    name = str()
-    age = int()
-    is_student = bool()
 
     def __init__(self, name, age, is_student):
         self.name = name
