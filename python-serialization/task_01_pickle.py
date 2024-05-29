@@ -9,7 +9,7 @@ class CustomObject():
     age = int()
     is_student = bool()
 
-    def __init__(self, name="John", age=25, is_student=True):
+    def __init__(self, name, age, is_student):
         self.name = name
         self.age = age
         self.is_student = is_student
