@@ -23,12 +23,6 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
             self.wfile.write(b"OK")
-        elif self.path == '/info':
-            self.send_response(200)
-            self.send_header('Content-type', 'application/json')
-            self.end_headers()
-            data = {"version": "1.0", "description": "A simple API built with http.server"}
-            self.wfile.write(json.dumps(data).encode()) 
         else:
             self.send_response(404)
             self.send_header('Content-type', 'text/plain')
@@ -36,12 +30,12 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(b"Endpoint not fount")
 
 
-def app():
+def run():
     server_address = ('', 8000)
     http = HTTPServer(server_address, SimpleHTTPRequestHandler)
-    print('Starting server. Visit http://localhost:8000')
+    print('Starting server...')
     http.serve_forever()
 
 
 if __name__ == "__main__":
-    app()
+    run()
