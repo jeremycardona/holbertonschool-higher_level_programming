@@ -26,7 +26,9 @@ def status():
 @app.route('/data')
 def get_usernames():
     usernames = list(users.keys())
-    return jsonify(usernames)
+    if usernames:
+        return jsonify(usernames)
+    return jsonify({"error": "Users not found"})
 
 # Endpoint to return user data for a specific username
 @app.route('/users/<username>')
