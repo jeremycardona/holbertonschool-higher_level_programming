@@ -1,74 +1,65 @@
 #!/usr/bin/python3
-"""A simple api with Flask"""
-from flask import Flask, jsonify, request
+""" Nameless Module for Task 4 """
 
+from flask import Flask
+from flask import jsonify, request, abort
 
+# Step 1
 app = Flask(__name__)
-app.config['JSON_SORT_KEYS'] = False
 
-# In-memory storage for users
-users = {
-    "jane": {"username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"},
-    "john": {"username": "john", "name": "John", "age": 30, "city": "New York"}
-}
+users = {}
 
-# Root endpoint
-@app.route('/')
+@app.route("/")
 def home():
+    """ Prints welcome string """
     return "Welcome to the Flask API!"
 
-# Endpoint to return status
-@app.route('/status')
+@app.route("/data")
+def data():
+    """ Returns JSON data """
+    return jsonify(list(users.keys()))
+
+@app.route("/status")
 def status():
+    """ Prints OK """
     return "OK"
 
-# Endpoint to return all usernames
-@app.route('/data')
-def get_usernames():
-    usernames = list(users.keys())
-    if usernames:
-        return jsonify(usernames)
-    return jsonify({"error": "User not found"})
+@app.route("/users/<username>")
+def users_specific(username):
+    """ Get specified """
+    if username not in users:
+        return jsonify({"error": "User not found"}), 404
 
-# Endpoint to return user data for a specific username
-@app.route('/users/<username>')
-def get_user(username):
-    user = users.get(username)
-    if user:
-        return jsonify(user)
-    else:
-        return  {"error": "User not found"}
+    output = users[username]
+    output["username"] = username
 
-# Endpoint to add a new user
-@app.route('/add_user', methods=['POST', 'GET'])
+    return jsonify(output)
+
+@app.route("/add_user", methods=["POST"])
 def add_user():
-    if request.method == 'POST':
-        if request.is_json:
-            user_data = request.get_json()
-        else:
-            user_data = request.args
-        username = user_data.get('username')
-        
-        if not username:
-            return jsonify({"error": "Username is required"}), 400
-    
-        if not all(key in user_data for key in ["username", "name", "age", "city"]):
-            return jsonify({"error": "Missing required fields"}), 400
-        
-        if username in users:
-            return jsonify({"error": "User already exists"}), 400
+    """ adds a new user to the dict """
+    if request.get_json() is None:
+        abort(400, "Not a JSON")
 
-        users[username] = {
-            "username": user_data.get('username'),
-            "name": user_data.get('name'),
-            "age":user_data.get('age'),
-            "city": user_data.get('city')
-        }
-        
-        return jsonify({"message": "User added", "user": users[username]}), 201
-    else:
-        return jsonify("OK"), 201
+    req_data = request.get_json()
 
+    if "username" not in req_data:
+        return jsonify({"error": "Username is required"}), 400
 
-if __name__ == "__main__": 
-    app.run(debug=True)
+    users[req_data["username"]] = {
+        "name": req_data["name"],
+        "age": req_data["age"],
+        "city": req_data["city"]
+    }
+
+    output = {
+        "username": req_data["username"],
+        "name": req_data["name"],
+        "age": req_data["age"],
+        "city": req_data["city"]
+    }
+    return jsonify({"message": "User added", "user": output}), 201
+
+# Set debug=True for the server to auto-reload when there are changes
+if __name__ == "__main__":
+    app.run(host='localhost', port=5000, debug=True)
