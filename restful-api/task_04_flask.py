@@ -28,7 +28,7 @@ def get_usernames():
     usernames = list(users.keys())
     if usernames:
         return jsonify(usernames)
-    return jsonify({"error": "Users not found"})
+    return jsonify({"error": "User not found"})
 
 # Endpoint to return user data for a specific username
 @app.route('/users/<username>')
@@ -61,4 +61,4 @@ def add_user():
         
         return jsonify({"message": "User added", "user": users})
     else:
-        return jsonify({"error": "Invalid JSON"}), 400
+        return jsonify({"error": "Invalid JSON"}), 401
