@@ -2,8 +2,8 @@ import requests
 
 url = 'http://127.0.0.1:5000/add_user'
 data = {
-    'username': 'anibal',
-    'name': 'anibal',
+    'username': 'josue',
+    'name': 'josue',
     'age': 29,
     'city': 'Puerto Rico'
 }
