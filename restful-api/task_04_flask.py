@@ -67,7 +67,7 @@ def add_user():
         
         return jsonify({"message": "User added", "user": users[username]}), 201
     else:
-        return jsonify({"error": "Invalid JSON"}), 400
+        return jsonify("OK"), 201
 
 
 if __name__ == "__main__": 
