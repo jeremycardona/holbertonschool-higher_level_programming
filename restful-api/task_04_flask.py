@@ -40,30 +40,34 @@ def get_user(username):
         return  {"error": "User not found"}
 
 # Endpoint to add a new user
-@app.route('/add_user', methods=['POST'])
+@app.route('/add_user', methods=['POST', 'GET'])
 def add_user():
-    if request.is_json:
-        user_data = request.get_json()
-    else:
-        user_data = request.args
+    if request.method == 'POST':
+        if request.is_json:
+            user_data = request.get_json()
+        else:
+            user_data = request.args
+        username = request.args.get('username')
+        
+        if not username:
+            return jsonify({"error": "Username is required"}), 400
     
-    username = user_data.get('username')
-    
-    if not username:
-        return jsonify({"error": "Username is required"}), 400
-    
-    if username in users:
-        return jsonify({"error": "User already exists"}), 400
+        if not all(key in user_data for key in ["username", "name", "age", "city"]):
+            return jsonify({"error": "Missing required fields"}), 400
+        
+        if username in users:
+            return jsonify({"error": "User already exists"}), 400
 
-    users[username] = {
-        "username": user_data.get('username'),
-        "name": user_data.get('name'),
-        "age": user_data.get('age'),
-        "city": user_data.get('city')
-    }
-    
-    return jsonify({"message": "User added", "user": users[username]}), 201
-    
+        users[username] = {
+            "username": request.args.get('username'),
+            "name": request.args.get('name'),
+            "age": request.args.get('age'),
+            "city": user_data.get('city')
+        }
+        
+        return jsonify({"message": "User added", "user": users[username]}), 201
+    else:
+        return jsonify({"error": "Invalid JSON"}), 400
 
 
 if __name__ == "__main__": 
