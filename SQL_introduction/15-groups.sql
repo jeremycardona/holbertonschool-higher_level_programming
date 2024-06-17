@@ -3,6 +3,7 @@
 -- display the number of records for this score with the label number
 -- list should be sorted by the number of records
 
-SELECT score, COUNT(score) as number
+SELECT score, COUNT(*) as number
 FROM second_table
-ORDER BY score DESC;
+GROUP BY score
+ORDER BY number DESC;
