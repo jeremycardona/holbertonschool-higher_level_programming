@@ -6,20 +6,22 @@ from sys import argv
 import MySQLdb
 
 if __name__ == "__main__":
-
-    database = MySQLdb.connect(
+    db = MySQLdb.connect(
         host="localhost",
+        port=3306,
         user=argv[1],
         passwd=argv[2],
         db=argv[3],
-        port=3306
+        charset="utf8"
     )
+    cur = db.cursor()
 
-    with database.cursor() as cursor:
-        cursor.execute("SELECT * FROM states ORDER BY id ASC")
-        result = cursor.fetchall()
-        if result:
-            print(*result, sep="\n")
+    cur.execute("SELECT * FROM states ORDER BY id ASC")
 
-    # Close the connection
-    database.close()
+    states = cur.fetchall()
+
+    for state in states:
+        print(state)
+
+    cur.close()
+    db.close()
