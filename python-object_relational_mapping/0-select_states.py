@@ -10,14 +10,14 @@ def list_states(username, password, dbname):
     cursor = db.cursor()
     
     # Execute the query to select all states sorted by id
-    cursor.execute("SELECT id, name FROM states ORDER BY id ASC")
+    cursor.execute("SELECT * FROM states ORDER BY states.id ASC")
     
     # Fetch all the results
     states = cursor.fetchall()
     
     # Print the results
     for state in states:
-        print(f"{state[0]}: {state[1]}")
+        print(state)
     
     # Close the cursor and the connection
     cursor.close()
