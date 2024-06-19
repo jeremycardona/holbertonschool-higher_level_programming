@@ -6,9 +6,6 @@ import sys
 import MySQLdb
 
 if __name__ == "__main__":
-    if len(sys.argv) != 5:
-        print("Usage: {} <mysql username> <mysql password> <database name> <state name>".format(sys.argv[0]))
-        sys.exit(1)
 
     username = sys.argv[1]
     password = sys.argv[2]
@@ -29,10 +26,11 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     # Prepare SQL query
-    query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
-
+    query = """
+SELECT * FROM states WHERE name LIKE BINARY '{}' ORDER BY states.id ASC"""
+    query = query.format(state_name)
     # Execute the query with user input
-    cursor.execute(query, (state_name,))
+    cursor.execute(query)
 
     # Fetch all the results
     states = cursor.fetchall()
