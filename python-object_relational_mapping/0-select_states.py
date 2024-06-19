@@ -5,17 +5,8 @@
 from sys import argv
 import MySQLdb
 
-#!/usr/bin/python3
-"""
-This script lists all states from the database hbtn_0e_0_usa.
-It takes 3 arguments: mysql username, mysql password, and database name.
-"""
-
-from sys import argv
-import MySQLdb
-
 if __name__ == "__main__":
-    # Connect to the MySQL database
+
     database = MySQLdb.connect(
         host="localhost",
         user=argv[1],
