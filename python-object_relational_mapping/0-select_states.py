@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""query for all states"""
 import sys
 import MySQLdb
 
