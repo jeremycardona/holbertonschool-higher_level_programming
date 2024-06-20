@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""safe query from sql injections"""
+"""cities by state"""
 
 
 import sys
@@ -29,7 +29,9 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     # Prepare SQL query
-    query = "SELECT * FROM cities ORDER BY id ASC "
+    query = "SELECT cities.id, cities.name, states.name FROM cities \
+        JOIN states ON cities.state_id = states.id\
+            ORDER BY cities.id ASC"
 
     # Execute the query with user input
     cursor.execute(query)
