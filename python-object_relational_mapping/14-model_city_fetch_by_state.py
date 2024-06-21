@@ -1,24 +1,40 @@
 #!/usr/bin/python3
 """List all states"""
 
-
 from sys import argv
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 from model_city import City
-from sqlalchemy import (create_engine)
-from sqlalchemy.orm import sessionmaker
 
 if __name__ == "__main__":
+    # Check if the correct number of arguments is provided
+    if len(argv) != 4:
+        print("Usage: ./script.py <username> <password> <database>")
+        exit(1)
+
+    # Extracting command line arguments
+    username = argv[1]
+    password = argv[2]
+    dbname = argv[3]
+
+    # Creating engine and establishing connection
     engine = create_engine(
-        'mysql+mysqldb://{}:{}@localhost:3306/{}'
-        .format(argv[1], argv[2],
-                argv[3]), pool_pre_ping=True)
+        f'mysql+mysqldb://{username}:{password}@localhost:3306/{dbname}',
+        pool_pre_ping=True)
     Base.metadata.create_all(engine)
+
+    # Creating a session
     Session = sessionmaker(bind=engine)
     session = Session()
+
+    # Querying cities and states
     results = session.query(City, State).\
         filter(City.state_id == State.id).all()
+
+    # Printing results
     for city, state in results:
-        print("{}: ({}) {}".format(state.name, city.id, city.name))
-    session.commit()
+        print(f"{state.name}: ({city.id}) {city.name}")
+
+    # Closing session
     session.close()
