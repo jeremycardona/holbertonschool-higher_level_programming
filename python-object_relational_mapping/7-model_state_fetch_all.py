@@ -10,14 +10,16 @@ from urllib.parse import quote_plus
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("Usage: ./7-model_state_fetch_all.py <mysql username> <mysql password> <database name>")
+        print("Usage: ./7-model_state_fetch_all.py <mysql username>\
+               <mysql password> <database name>")
         sys.exit(1)
 
     username = sys.argv[1]
     password = quote_plus(sys.argv[2])  # URL-encode the password
     dbname = sys.argv[3]
 
-    engine = create_engine(f'mysql+mysqldb://{username}:{password}@localhost:3306/{dbname}', pool_pre_ping=True)
+    engine = create_engine(f'mysql+mysqldb://{username}:{password}\
+                           @localhost:3306/{dbname}', pool_pre_ping=True)
     Base.metadata.create_all(engine)
 
     Session = sessionmaker(bind=engine)
