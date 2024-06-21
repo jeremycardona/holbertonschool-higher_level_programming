@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """List all states"""
 
+
 from sys import argv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -14,13 +15,13 @@ if __name__ == "__main__":
         exit(1)
 
     # Extracting command line arguments
-    username = argv[1]
-    password = argv[2]
+    u = argv[1]
+    p = argv[2]
     dbname = argv[3]
 
     # Creating engine and establishing connection
     engine = create_engine(
-        f'mysql+mysqldb://{username}:{password}@localhost:3306/{dbname}',
+        f'mysql+mysqldb://{u}:{p}@localhost:3306/{dbname}',
         pool_pre_ping=True)
     Base.metadata.create_all(engine)
 
