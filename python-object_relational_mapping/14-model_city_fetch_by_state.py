@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """List all states"""
+
+
 from sys import argv
 from model_state import Base, State
 from model_city import City
