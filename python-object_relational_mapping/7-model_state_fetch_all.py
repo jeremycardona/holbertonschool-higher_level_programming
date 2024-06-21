@@ -14,12 +14,11 @@ if __name__ == "__main__":
                <mysql password> <database name>")
         sys.exit(1)
 
-    username = sys.argv[1]
-    password = quote_plus(sys.argv[2])  # URL-encode the password
+    u = sys.argv[1]
+    p = quote_plus(sys.argv[2])  # URL-encode the password
     dbname = sys.argv[3]
 
-    engine = create_engine(f'mysql+mysqldb://{username}:{password}\
-                           @localhost:3306/{dbname}', pool_pre_ping=True)
+    engine = create_engine(f'mysql+mysqldb://{u}:{p}@localhost:3306/{dbname}')
     Base.metadata.create_all(engine)
 
     Session = sessionmaker(bind=engine)
