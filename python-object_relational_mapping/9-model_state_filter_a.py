@@ -27,7 +27,8 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states = session.query(State).filter(State.name.contains('a')).order_by(State.id).all()
+    states = session.query(State).\
+        filter(State.name.contains('a')).order_by(State.id).all()
 
     for state in states:
         print(f"{state.id}: {state.name}")
